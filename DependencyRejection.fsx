@@ -19,6 +19,7 @@ let getBrownBags (connectionString : string) day =
 
 let tryAcceptBrownBag (connectionString : string) brownBag =
     brownBag.Presenter = "Chris"
+
 let connectionString = "udp://127.0.0.1"
 
 let theBrownBag = { Day = { Day = 17; Month = 5; Year = 2017 }; Presenter = "Chris"; Topic = "F#" }
