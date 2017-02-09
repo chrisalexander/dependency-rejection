@@ -32,7 +32,7 @@ interface IValidator
 // Some kind of data store for finding out about brown bags and storing them
 interface IBrownBagStore
 {
-    List<BrownBag> GetBrownBags();
+    List<BrownBag> GetBrownBags(Date date);
     Guid TryAccept(BrownBag brownBag);
 }
 
@@ -60,8 +60,10 @@ public BrownBagController
             return Result.Fail;
         }
 
-        var currentBrownBags = brownBagStore.GetBrownBags();
-        if (currentBrownBags.Any(b => b.Day.Equals(brownBag.Day)))
+        var maxBrownBagsPerDay = 1;
+
+        var currentBrownBags = brownBagStore.GetBrownBags(brownBag.Day);
+        if (currentBrownBags.Count >= maxBrownBagsPerDay)
         {
             return Result.Fail;
         }
