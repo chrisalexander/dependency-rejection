@@ -10,10 +10,6 @@ type BrownBag = {
     Topic : string
 }
 
-type BrownBagDto = {
-    Data : byte[]
-}
-
 let getBrownBags (connectionString : string) day =
     [{ Day = day; Presenter = "Chris"; Topic = "F#" }]
 
