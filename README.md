@@ -16,9 +16,9 @@ A brown bag / workshop based on Mark Seemann's excellent NDC London presentation
 - Example of F# partial application
 - Decompiling the F# partial application to C#
 - Functional purity
-- - Haskell IO type
-- - LOL F#
+  - Haskell IO type
+  - LOL F#
 - Function composition
-- - Reject composition
-- - Pure and impure sandwich
+  - Reject composition
+  - Pure and impure sandwich
 - Brief mention of Ports and Adapters
