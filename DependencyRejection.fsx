@@ -19,19 +19,22 @@ let getBrownBags (connectionString : string) day =
 
 let tryAcceptBrownBag (connectionString : string) brownBag =
     brownBag.Presenter = "Chris"
-
 let connectionString = "udp://127.0.0.1"
 
 let theBrownBag = { Day = { Day = 17; Month = 5; Year = 2017 }; Presenter = "Chris"; Topic = "F#" }
 
-let handleNewBrownBag getBrownBags tryAcceptBrownBag capacity brownBag =
-    let existingBrownBags = (getBrownBags brownBag.Day : BrownBag list)
+// New code starts here
+let flip f x y = f y x
 
-    if existingBrownBags.Length >= capacity
-    then (tryAcceptBrownBag brownBag : bool) |> Some
+let canAcceptBrownBag capacity (allBrownBags : BrownBag list) (brownBag : BrownBag) =
+    if allBrownBags.Length >= capacity
+    then brownBag |> Some
     else None
 
-let getBrownBagsSpecific = getBrownBags connectionString
-let tryAcceptBrownBagSpecific = tryAcceptBrownBag connectionString
+let handleNewBrownBagComposition brownBag =
+    brownBag.Day
+    |> getBrownBags connectionString
+    |> flip (canAcceptBrownBag 1) brownBag
+    |> Option.map (tryAcceptBrownBag connectionString)
 
-handleNewBrownBag getBrownBagsSpecific tryAcceptBrownBagSpecific 1 theBrownBag
+handleNewBrownBagComposition theBrownBag

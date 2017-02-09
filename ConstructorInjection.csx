@@ -1,5 +1,3 @@
-using System.Linq;
-
 // The domain object
 class BrownBag
 {
